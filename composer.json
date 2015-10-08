@@ -1,0 +1,23 @@
+{
+    "name": "codechap/aeon",
+    "description": "Buy electricity online",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "codechap",
+            "email": "hello@codechap.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0",
+        "openlss/lib-array2xml": "dev-master",
+        "phpunit/phpunit": "4.8.*",
+        "fuelphp/common": "^2.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "CodeChap\\": "src/Aeon/"
+        }
+    }
+}
