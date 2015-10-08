@@ -1,7 +1,7 @@
 AEON SWITCH
 ===
 
-[![Build Status](https://img.shields.io/travis/codechap/Aeon.svg?style=flat-square)](https://travis-ci.org/codechap/Aeon)
+[![Build Status](https://travis-ci.org/codeChap/Aeon.svg?branch=master)](https://travis-ci.org/codeChap/Aeon)
 
 3RD Party Electricity Integration Package
 
