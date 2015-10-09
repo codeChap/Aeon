@@ -103,7 +103,13 @@
          */
         public function get()
         {
-            return ! empty($this->response) ? $this->response : false;
+            if( ! empty($this->response) ){
+
+                foreach($this->response as $array){
+                    $return[] = $array['data'];
+                }
+            }
+            return isset($return) ? $return : false;
         }
 
         /**
