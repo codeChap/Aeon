@@ -4,7 +4,7 @@
      * Confirm a sale after an Electricity request 
      */
 
-    namespace CodeChap\Request;
+    namespace CodeChap\Aeon\Request;
 
     Class Confirm
     {
@@ -31,7 +31,7 @@
             if($xml = file_get_contents($filePath)){
 
                  // Create a TCP/IP socket
-                $socket = new \CodeChap\Socket($config);
+                $socket = new \CodeChap\Aeon\Socket($config);
 
                 // Send confirmation request
                 $socket->write($xml);

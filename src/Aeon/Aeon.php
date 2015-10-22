@@ -9,7 +9,7 @@
      * 
      */
 
-    namespace CodeChap;
+    namespace CodeChap\Aeon;
 
     Class Aeon implements \ArrayAccess, \IteratorAggregate, \Countable
     {

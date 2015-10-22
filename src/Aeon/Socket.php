@@ -9,7 +9,7 @@
      * 
      */
 
-    namespace CodeChap;
+    namespace CodeChap\Aeon;
 
     Class Socket
     {
@@ -68,6 +68,10 @@
                 }
 
                 return $response;
+            }
+
+            else{
+                throw new \Exception('No data returned from server');
             }
         }
 

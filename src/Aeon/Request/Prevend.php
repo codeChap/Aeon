@@ -1,6 +1,6 @@
 <?php
 
-    namespace CodeChap\Request;
+    namespace CodeChap\Aeon\Request;
 
     Class Prevend
     {
@@ -42,7 +42,7 @@
             $xml_post_string_one = '<request><EventType>ConfirmMeter</EventType><event><DeviceId>'.$config['DeviceId'].'</DeviceId><DeviceSer>'.$config['DeviceSer'].'</DeviceSer><UserPin>'.$config['UserPin'].'</UserPin><MeterNum>'.$this->meterNumber.'</MeterNum><Amount>'.$this->credit.'</Amount><Reference>'.$this->reference.'</Reference></event></request>'.PHP_EOL;
 
             // Create a TCP/IP socket
-            $socket = new \CodeChap\Socket($config);
+            $socket = new \CodeChap\Aeon\Socket($config);
 
             // STEP 1. Authenticate //
 

@@ -4,7 +4,7 @@
      * Reprint a voucher
      */
 
-    namespace CodeChap\Request;
+    namespace CodeChap\Aeon\Request;
 
     Class Reprint
     {
@@ -48,7 +48,7 @@
             $xml_post_string_two = '<request><SessionId></SessionId><EventType>Reprint</EventType><event><TransRef>'.$this->transref.'</TransRef><MeterNum>'.$this->meterNumber.'</MeterNum><OrigReference>'.$this->reference.'</OrigReference></event></request>'.PHP_EOL;
 
             // Create a TCP/IP socket
-            $socket = new \CodeChap\Socket($config);
+            $socket = new \CodeChap\Aeon\Socket($config);
 
             // STEP 1. Authenticate //
 

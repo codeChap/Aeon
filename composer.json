@@ -1,11 +1,14 @@
 {
     "name": "codechap/aeon",
-    "description": "Buy electricity online",
-    "license": "proprietary",
+    "description": "PHP integration for the Aeon switch",
+    "keywords": ["electricity"],
+    "homepage": "https://github.com/codechap/aeon",
+    "license": "MIT",
     "authors": [
         {
-            "name": "codechap",
-            "email": "hello@codechap.com"
+            "name": "CodeChap",
+            "email": "hello@codechap.com",
+            "role": "Developer"
         }
     ],
     "minimum-stability": "dev",

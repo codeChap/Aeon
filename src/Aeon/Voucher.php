@@ -9,7 +9,7 @@
      * 
      */
 
-    namespace CodeChap;
+    namespace CodeChap\Aeon;
 
     use Fuel\Common\Arr;
 

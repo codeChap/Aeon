@@ -1,6 +1,6 @@
 <?php
 
-    namespace CodeChap\Request;
+    namespace CodeChap\Aeon\Request;
 
     Class Electricity
     {
@@ -46,7 +46,7 @@
             $xml_post_string_thr = '<request><EventType>SoldVoucher</EventType><event><DeviceId>'.$config['DeviceId'].'</DeviceId><DeviceSer>'.$config['DeviceSer'].'</DeviceSer><UserPin>'.$config['UserPin'].'</UserPin><TransRef></TransRef><Reference>'.$this->reference.'</Reference></event></request>'.PHP_EOL;
 
             // Create a TCP/IP socket
-            $socket = new \CodeChap\Socket($config);
+            $socket = new \CodeChap\Aeon\Socket($config);
 
             // STEP 1. Authenticate //
 

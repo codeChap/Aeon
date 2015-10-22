@@ -4,7 +4,7 @@
      * Reprint a voucher
      */
 
-    namespace CodeChap\Request;
+    namespace CodeChap\Aeon\Request;
 
     Class Account
     {
@@ -33,7 +33,7 @@
             $xml_post_string_one = '<request><EventType>Authentication</EventType><event><DeviceId>'.$config['DeviceId'].'</DeviceId><DeviceSer>'.$config['DeviceSer'].'</DeviceSer><UserPin>'.$config['UserPin'].'</UserPin><TransType>AccountInfo</TransType><Reference>'.$this->reference.'</Reference></event></request>'.PHP_EOL;
 
             // Create a TCP/IP socket
-            $socket = new \CodeChap\Socket($config);
+            $socket = new \CodeChap\Aeon\Socket($config);
 
             // Send confirmation request
             $socket->write($xml_post_string_one);
