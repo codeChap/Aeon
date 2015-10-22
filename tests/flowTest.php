@@ -15,8 +15,8 @@
             $this->config['DeviceSer'] = getenv('DEVICE');
             $this->config['UserPin'] = getenv('PIN');
 
-            $aeon = new \CodeChap\Aeon($this->config);
-            $aeon[] = new \CodeChap\Request\Electricity('01060029501', '120', 'Testing Normal Vendor request');
+            $aeon = new CodeChap\Aeon\Aeon($this->config);
+            $aeon[] = new CodeChap\Aeon\Request\Electricity('01060029501', '120', 'Testing Normal Vendor request');
             $aeon->execute();
 
             $this->assertEmpty($aeon->get()[0]['event']['EventCode']);
@@ -27,8 +27,8 @@
             $this->config['DeviceSer'] = getenv('DEVICE');
             $this->config['UserPin'] = getenv('PIN');
 
-            $aeon = new \CodeChap\Aeon($this->config);
-            $aeon[] = new \CodeChap\Request\Confirm('01060029501');
+            $aeon = new CodeChap\Aeon\Aeon($this->config);
+            $aeon[] = new CodeChap\Aeon\Request\Confirm('01060029501');
             $aeon->execute();
 
             $this->assertEmpty($aeon->get()[0]['event']['EventCode']);
@@ -39,8 +39,8 @@
             $this->config['DeviceSer'] = getenv('DEVICE');
             $this->config['UserPin'] = getenv('PIN');
 
-            $aeon = new \CodeChap\Aeon($this->config);
-            $aeon[] = new \CodeChap\Request\Reprint('01060029501', 'Testing reprint');
+            $aeon = new CodeChap\Aeon\Aeon($this->config);
+            $aeon[] = new CodeChap\Aeon\Request\Reprint('01060029501', 'Testing reprint');
             $aeon->execute();
 
             $this->assertEmpty($aeon->get()[0]['event']['EventCode']);
@@ -51,11 +51,11 @@
             $this->config['DeviceSer'] = getenv('DEVICE');
             $this->config['UserPin'] = getenv('PIN');            
 
-            $aeon = new \CodeChap\Aeon($this->config);
-            $aeon[] = new \CodeChap\Request\Reprint('01060029501', 'Testing reprint and voucher generation');
+            $aeon = new CodeChap\Aeon\Aeon($this->config);
+            $aeon[] = new CodeChap\Aeon\Request\Reprint('01060029501', 'Testing reprint and voucher generation');
             $aeon->execute();
 
-            $voucher = new \CodeChap\Voucher($aeon->get());
+            $voucher = new CodeChap\Aeon\Voucher($aeon->get());
             $voucher->html();
         }
     }
