@@ -86,9 +86,10 @@
 
                 // Check for an error
                 if( ! isset($response['data']['ErrorCode']) ){
-                    $this->response[] = $object->execute($this->config);
+                    $this->response[] = $response;
                 }
 
+                // Show error
                 else{
                     throw new \Exception('ERROR (Code '.$response['data']['ErrorCode'].') ' . $response['data']['ErrorText']);
                 }

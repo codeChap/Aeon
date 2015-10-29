@@ -42,28 +42,28 @@
             $xml_post_string_one = '<request><EventType>ConfirmMeter</EventType><event><DeviceId>'.$config['DeviceId'].'</DeviceId><DeviceSer>'.$config['DeviceSer'].'</DeviceSer><UserPin>'.$config['UserPin'].'</UserPin><MeterNum>'.$this->meterNumber.'</MeterNum><Amount>'.$this->credit.'</Amount><Reference>'.$this->reference.'</Reference></event></request>'.PHP_EOL;
             $xml_post_string_two = '<request><SessionId></SessionId><EventType>GetVoucher</EventType><event><Type></Type><TransRef></TransRef><Reference>'.$this->reference.'</Reference></event></request>'.PHP_EOL;
 
-            // Create steps three's confirmation settings
+            // Create step three's confirmation settings
             $xml_post_string_thr = '<request><EventType>SoldVoucher</EventType><event><DeviceId>'.$config['DeviceId'].'</DeviceId><DeviceSer>'.$config['DeviceSer'].'</DeviceSer><UserPin>'.$config['UserPin'].'</UserPin><TransRef></TransRef><Reference>'.$this->reference.'</Reference></event></request>'.PHP_EOL;
 
             // Create a TCP/IP socket
             $socket = new \CodeChap\Aeon\Socket($config);
 
-            // STEP 1. Authenticate //
+            // STEP 1. AUTHENTICATE //
 
             // Send confirmation request
             $socket->write($xml_post_string_one);
+
             // Get result of send
             $result_one = $socket->get();
 
-            // STEP 2. Buy //
+            // STEP 2. BUY //
 
             // Find session id field
             preg_match('/<SessionId>(.*)<\/SessionId>/', $result_one, $SessionId);
             // Find transfer reference field
             preg_match('/<TransRef>(.*)<\/TransRef>/', $result_one, $TransRef);
-            // Swop in Session ID
+            // Swop in Session ID and transfer ref with first result
             $xml_post_string_two = preg_replace('/<SessionId><\/SessionId>/', $SessionId[0], $xml_post_string_two);
-            // Swop in transfer reference
             $xml_post_string_two = preg_replace('/<TransRef><\/TransRef>/', $TransRef[0], $xml_post_string_two);
 
             // Send voucher request

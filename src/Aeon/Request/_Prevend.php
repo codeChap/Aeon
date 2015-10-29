@@ -44,18 +44,17 @@
             // Create a TCP/IP socket
             $socket = new \CodeChap\Aeon\Socket($config);
 
-            // STEP 1. Authenticate //
-
             // Send confirmation request
             $socket->write($xml_post_string_one);
+            
             // Get result of send
-            $result_one = $socket->get();
+            $result = $socket->get();
 
             //Close the socket
             $socket->close();
 
             // Done
-            $finalResult = \LSS\XML2Array::createArray($result_one);
+            $finalResult = \LSS\XML2Array::createArray($result);
             
             // Return usefull data
             return $finalResult['response'];

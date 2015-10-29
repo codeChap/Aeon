@@ -16,16 +16,20 @@
         /**
          * Holds the open socket conenction
          */
-        public $socket = false;
+        public static $socket = false;
 
         /**
          * Opens a persistant socket connection
          */
         public function __construct($config)
         {
-            if( ! $this->socket = pfsockopen($config['ip'], $config['port'], $errno, $errstr, 30)){
+            // Connect
+            if( ! static::$socket = pfsockopen($config['ip'], $config['port'], $errno, $errstr, 30)){
                 throw new Exception("Unable to connect to " . $config['ip'] . ' on port ' . $config['port']);
             }
+
+            // FuelPHP logger
+            @\Log::debug('SOCKET OPEN');
         }
 
         /**
@@ -33,7 +37,10 @@
          */
         public function write($xmlPostString)
         {
-            fwrite($this->socket, $xmlPostString);
+            // FuelPHP logger
+            @\Log::debug('SOCKET: ' . trim($xmlPostString));
+
+            fwrite(static::$socket, $xmlPostString);
         }
 
         /**
@@ -41,8 +48,8 @@
          */
         public function get()
         {
-            while( $buffer = fgets($this->socket, 1024) ){
-                
+            while( $buffer = fgets(static::$socket, 1024) ){
+
                 $response = isset($response) ? $response.$buffer : $buffer;
                 
                 if(preg_match('/<\/response>/', $buffer)){
@@ -53,6 +60,9 @@
             // Check for complete response
             if(isset($response)){
 
+                // FuelPHP logger
+                @\Log::debug('SOCKET: ' . trim($response));
+
                 // Check for error code
                 if(preg_match('/<EventCode>(.*)<\/EventCode>/', $response, $error)){
                     if($error[1] !== '0'){
@@ -61,7 +71,7 @@
                         preg_match('/<ErrorCode>(.*)<\/ErrorCode>/', $response, $errorCode);
                         preg_match('/<ErrorText>(.*)<\/ErrorText>/', $response, $errorText);
 
-                        // Thrw exception
+                        // Throw exception
                         throw new \Exception('Error code ' . $errorCode[1] . ': ' . $errorText[1]);
                     }
                     
@@ -80,8 +90,11 @@
          */
         public function close()
         {
-            fclose($this->socket);
+            fclose(static::$socket);
 
-            $this->socket = false;
+            static::$socket = false;
+
+            // FuelPHP logger
+            @\Log::debug('SOCKET CLOSED');
         }
     }
